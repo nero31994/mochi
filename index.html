@@ -357,6 +357,29 @@ body::before {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+  /* Pulse glow effect for buttons */
+.pulse-glow {
+  animation: pulseButton 2s infinite;
+  box-shadow: 0 0 10px #ff4fa3, 0 0 20px #ff85c1, 0 0 30px #ff4fa3;
+  border-radius:50%;
+  transition: transform 0.3s ease;
+}
+
+.pulse-glow:hover {
+  transform: scale(1.1); /* slight hover pop */
+}
+
+@keyframes pulseButton {
+  0% {
+    box-shadow: 0 0 10px #ff4fa3, 0 0 20px #ff85c1, 0 0 30px #ff4fa3;
+  }
+  50% {
+    box-shadow: 0 0 20px #ff4fa3, 0 0 40px #ff85c1, 0 0 60px #ff4fa3;
+  }
+  100% {
+    box-shadow: 0 0 10px #ff4fa3, 0 0 20px #ff85c1, 0 0 30px #ff4fa3;
+  }
+}
 </style>
 </head>
 <body>
@@ -392,12 +415,11 @@ body::before {
       <h3>Celebrations:</h3>
       <p><strong>Christening (9:00 AM) For Godparents:</strong> Mary Help of Christians Church</p>
       <p>📍 Canetown sbd. Victorias City</p>
-      <a class="button" href="https://maps.app.goo.gl/ChQwGQzdS1VNgJGZ8" target="_blank">Navigate to Church</a>
+<a class="button pulse-glow" href="https://maps.app.goo.gl/ChQwGQzdS1VNgJGZ8" target="_blank">Navigate to Church</a>
 
-      <p><strong>Birthday Venue (12:00 NN) All Guest:</strong> CHA Hall</p>
-      <p>📍 Canetown sbd. Victorias City</p>
-      <a class="button" href="https://maps.app.goo.gl/TJ8RfoRkrm9E7bpM9" target="_blank">Navigate to Birthday Venue</a>
-    </div>
+<p><strong>Birthday Venue (12:00 NN) All Guest:</strong> CHA Hall</p>
+<p>📍 Canetown sbd. Victorias City</p>
+<a class="button pulse-glow" href="https://maps.app.goo.gl/TJ8RfoRkrm9E7bpM9" target="_blank">Navigate to Birthday Venue</a>    </div>
 
     <div class="footer">We would love to celebrate this special day with you.</div>
   </div>
