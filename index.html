@@ -292,42 +292,70 @@ body::before {
   50% { background: linear-gradient(135deg, #ffe6f7, #e0fff7, #fff0ff); }
   100% { background: linear-gradient(135deg, #fde6ff, #e0f7ff, #fff0f8); }
 }
-  /* ------------------ UNICORN PULSE GLOW ------------------ */
+/* ------------------ UNICORN MAGICAL PULSE ------------------ */
 .unicorn-glow {
   position: relative;
-  border-radius: 20px;
+  border-radius: 25px;
   overflow: hidden;
-  animation: unicornPulse 4s ease-in-out infinite;
-  box-shadow: 0 0 20px rgba(255, 182, 255, 0.5);
+  animation: unicornPulse 6s ease-in-out infinite;
+  box-shadow:
+    0 0 20px rgba(255, 182, 255, 0.6),
+    0 0 40px rgba(173, 216, 230, 0.4),
+    0 0 60px rgba(255, 255, 255, 0.3);
   transition: box-shadow 0.3s ease;
 }
 
+/* Rainbow gradient overlay (soft animated) */
+.unicorn-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #ff85c1, #ffd6f6, #ff4fa3, #b3f0ff, #ff85c1);
+  background-size: 400% 400%;
+  opacity: 0.5;
+  animation: rainbowShift 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.unicorn-glow img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  border-radius: 20px;
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.unicorn-glow img:hover {
+  transform: scale(1.05);
+}
+
+/* Keyframes for pulsing shadow */
 @keyframes unicornPulse {
   0% {
-    box-shadow: 0 0 15px rgba(255, 182, 255, 0.5),
-                0 0 25px rgba(173, 216, 230, 0.4),
-                0 0 35px rgba(255, 255, 255, 0.3);
-  }
-  25% {
-    box-shadow: 0 0 25px rgba(255, 182, 255, 0.6),
-                0 0 35px rgba(173, 216, 230, 0.5),
-                0 0 45px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 20px rgba(255,182,255,0.5),
+                0 0 40px rgba(173,216,230,0.4),
+                0 0 60px rgba(255,255,255,0.3);
   }
   50% {
-    box-shadow: 0 0 35px rgba(255, 182, 255, 0.7),
-                0 0 45px rgba(173, 216, 230, 0.6),
-                0 0 55px rgba(255, 255, 255, 0.5);
-  }
-  75% {
-    box-shadow: 0 0 25px rgba(255, 182, 255, 0.6),
-                0 0 35px rgba(173, 216, 230, 0.5),
-                0 0 45px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 40px rgba(255,182,255,0.7),
+                0 0 60px rgba(173,216,230,0.6),
+                0 0 80px rgba(255,255,255,0.5);
   }
   100% {
-    box-shadow: 0 0 15px rgba(255, 182, 255, 0.5),
-                0 0 25px rgba(173, 216, 230, 0.4),
-                0 0 35px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255,182,255,0.5),
+                0 0 40px rgba(173,216,230,0.4),
+                0 0 60px rgba(255,255,255,0.3);
   }
+}
+
+/* Keyframes for rainbow gradient shift */
+@keyframes rainbowShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 </style>
 </head>
@@ -351,7 +379,7 @@ body::before {
     <div class="name">Natania Jasly</div>
     <div class="date">March 31, 2026 at <strong>9:00 AM</strong></div>
 
-    <div class="photo-frame-wrapper">
+    <div class="photo-frame-wrapper unicorn-glow">
       <img 
         src="https://raw.githubusercontent.com/nero31994/mochi/refs/heads/main/file_00000000d0b4720ba51fef39d0a8b7ce.webp" 
         alt="Natania Jasly"
