@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natania Jasly Christening Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family:'Poppins',sans-serif;
+
+  /* Paper texture background */
+  background:
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
+    linear-gradient(135deg,#fde6ff,#e0f7ff,#fff0f8);
+
+  background-blend-mode: overlay;
+  background-size: auto, 400% 400%;
+  animation:bgMove 15s ease infinite;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  overflow-x:hidden;
+  overflow-y:auto;
+  position:relative;
+}
+
+@keyframes bgMove {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* Subtle floating glow */
+body::before {
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  background: radial-gradient(circle, rgba(255,182,255,0.35), transparent);
+  top:-100px;
+  left:-100px;
+  filter:blur(80px);
+  z-index:0;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * { animation:none !important; }
+}
+
+/* ============================= */
+/* 3D ENVELOPE */
+/* ============================= */
+
+.envelope-screen {
+  position:fixed;
+  inset:0;
+
+  background:
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
+    linear-gradient(135deg,#fde6ff,#e0f7ff,#fff0f8);
+
+  background-blend-mode: overlay;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:999;
+  perspective:1200px;
+  transition:opacity 1s ease, visibility 1s ease;
+}
+
+.envelope-wrapper {
+  position:relative;
+  width:340px;
+  height:220px;
+  transform-style:preserve-3d;
+  cursor:pointer;
+}
+
+.envelope-body {
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:#ff85c1;
+  border-radius:12px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.3);
+}
+
+.envelope-flap {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#ff4fa3;
+  clip-path:polygon(0 0, 50% 65%, 100% 0);
+  transform-origin:top center;
+  transition:transform 1.3s cubic-bezier(.68,-0.55,.27,1.55);
+  backface-visibility:hidden;
+}
+
+.envelope-wrapper.open .envelope-flap {
+  transform:rotateX(-180deg);
+}
+
+.envelope-text {
+  margin-top:30px;
+  font-weight:600;
+  color:#d63384;
+  font-size:18px;
+}
+
+.hidden {
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 1s ease;
+}
+
+/* ============================= */
+/* INVITATION CARD */
+/* ============================= */
+
+.invitation {
+  width:100%;
+  max-width:600px;
+
+  /* Paper card texture */
+  background:
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
+    rgba(255,255,255,0.92);
+
+  backdrop-filter: blur(6px);
+  border:1px solid rgba(255,255,255,0.5);
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.15);
+  text-align:center;
+  position:relative;
+  z-index:2;
+  display:none;
+  animation:cardReveal 1.2s ease forwards;
+}
+
+@keyframes cardReveal {
+  from { opacity:0; transform:translateY(30px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.invitation::before {
+  content:"";
+  position:absolute;
+  inset:-5px;
+  background:linear-gradient(45deg,#ff85c1,#ffd6f6,#ff4fa3);
+  z-index:-1;
+  filter:blur(20px);
+  opacity:0.25;
+  border-radius:30px;
+}
+
+/* Typography */
+
+.title {
+  font-family:'Pacifico',cursive;
+  font-size:40px;
+  color:#ff4fa3;
+  margin-bottom:10px;
+}
+
+.subtitle {
+  font-size:18px;
+  margin-bottom:15px;
+  font-style:italic;
+  opacity:0.8;
+}
+
+.name {
+  font-family:'Playfair Display',serif;
+  font-size:32px;
+  font-weight:700;
+  color:#d63384;
+  margin:15px 0;
+}
+
+.date {
+  font-size:18px;
+  margin-bottom:25px;
+}
+
+/* Image */
+
+.photo-frame-wrapper {
+  position:relative;
+  margin:25px auto;
+  border-radius:25px;
+  overflow:hidden;
+  box-shadow:0 15px 40px rgba(0,0,0,0.25);
+  border:5px solid #ff85c1;
+}
+
+.photo-frame-wrapper img {
+  width:100%;
+  display:block;
+  border-radius:20px;
+  transition:0.5s ease;
+}
+
+.photo-frame-wrapper img:hover {
+  transform:scale(1.05);
+}
+
+/* Section */
+
+.section {
+  margin-top:25px;
+  font-size:16px;
+  text-align:left;
+}
+
+.section h3 {
+  font-size:24px;
+  margin-bottom:15px;
+  color:#ff4fa3;
+}
+
+/* Buttons */
+
+.button {
+  display:block;
+  width:100%;
+  text-align:center;
+  margin:10px 0;
+  padding:12px;
+  background:linear-gradient(45deg,#ff4fa3,#ff85c1);
+  color:white;
+  border-radius:25px;
+  text-decoration:none;
+  font-weight:600;
+  transition:0.3s;
+  box-shadow:0 8px 20px rgba(255,79,163,0.4);
+}
+
+.button:hover {
+  transform:translateY(-2px);
+  box-shadow:0 12px 25px rgba(255,79,163,0.6);
+}
+
+.footer {
+  margin-top:25px;
+  font-size:16px;
+  font-style:italic;
+  text-align:center;
+}
+
+/* Music Button */
+
+#musicToggle {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ff4fa3;
+  border:none;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  font-size:20px;
+  color:white;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  z-index:5;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 3D Envelope -->
+<div class="envelope-screen" id="envelopeScreen">
+  <div class="envelope-wrapper" id="envelope">
+    <div class="envelope-body"></div>
+    <div class="envelope-flap"></div>
+  </div>
+  <div class="envelope-text">💌 Tap to Open Invitation</div>
+</div>
+
+<!-- Invitation Card -->
+<div class="invitation" id="invitationCard">
+  <h1 class="title">You're Invited!</h1>
+  <p class="subtitle">Please join us as we celebrate the christening and birthday of our child</p>
+  <div class="name">Natania Jasly</div>
+  <div class="date">March 31, 2026 at <strong>9:00 AM</strong></div>
+
+  <div class="photo-frame-wrapper">
+    <img src="https://raw.githubusercontent.com/nero31994/resourcenxb/refs/heads/main/file_0000000066f871fabbffe86ec7b5fa65%20(1).png" alt="Natania Jasly">
+  </div>
+
+  <div class="section">
+    <h3>Celebrations:</h3>
+    <p><strong>Christening (9:00 AM):</strong> Mary Help of Christians Church</p>
+    <p>📍 Canetown sbd. Victorias City</p>
+    <a class="button" href="https://maps.app.goo.gl/ChQwGQzdS1VNgJGZ8" target="_blank">Navigate to Church</a>
+
+    <p><strong>Birthday Venue (12:00 NN) All guest:</strong> CHA Hall</p>
+    <p>📍 Canetown sbd. Victorias City</p>
+    <a class="button" href="https://maps.app.goo.gl/TJ8RfoRkrm9E7bpM9" target="_blank">Navigate to Birthday Venue</a>
+  </div>
+
+  <div class="footer">
+    We would love to celebrate this special day with you.
+  </div>
+</div>
+
+<button id="musicToggle">🎵</button>
+<audio id="bgMusic" loop>
+  <source src="https://raw.githubusercontent.com/nero31994/resourcenxb/main/6-Happy-Commercial-Piano%28chosic.com%29.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const envelope = document.getElementById("envelope");
+  const envelopeScreen = document.getElementById("envelopeScreen");
+  const invitation = document.getElementById("invitationCard");
+  const music = document.getElementById("bgMusic");
+  const musicBtn = document.getElementById("musicToggle");
+
+  envelope.addEventListener("click", () => {
+
+    envelope.classList.add("open");
+
+    setTimeout(() => {
+      envelopeScreen.classList.add("hidden");
+      invitation.style.display = "block";
+      musicBtn.style.display = "block";
+      music.play();
+      musicBtn.innerHTML="🔊";
+    }, 1300);
+
+  });
+
+  musicBtn.onclick = () => {
+    if(music.paused){
+      music.play();
+      musicBtn.innerHTML="🔊";
+    } else {
+      music.pause();
+      musicBtn.innerHTML="🎵";
+    }
+  };
+
+});
+</script>
+
+</body>
+</html>
