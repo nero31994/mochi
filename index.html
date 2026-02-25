@@ -58,61 +58,95 @@ body::before {
 }
 
 /* ------------------ 3D ENVELOPE ------------------ */
-.envelope-screen {
-  position:fixed;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  background:
-    url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
-    linear-gradient(135deg,#fde6ff,#e0f7ff,#fff0f8);
-  background-blend-mode: overlay;
-  z-index:999;
-  perspective:1200px;
-  transition:opacity 1s ease, visibility 1s ease;
-}
-
+/* =================== ENVELOPE IMPROVED DESIGN =================== */
 .envelope-wrapper {
-  position:relative;
-  width:340px;
-  height:220px;
-  transform-style:preserve-3d;
-  cursor:pointer;
+  position: relative;
+  width: 340px;
+  height: 220px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  transition: transform 0.6s ease;
 }
 
+/* Slight tilt on hover */
+.envelope-wrapper:hover {
+  transform: rotateY(5deg) rotateX(2deg);
+}
+
+/* Envelope body with layered shadows & gradient */
 .envelope-body {
-  position:absolute;
-  width:100%; height:100%;
-  background:#ff85c1;
-  border-radius:12px;
-  box-shadow:0 25px 60px rgba(0,0,0,0.3);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #ff90c1, #ff5ea1);
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 
+              0 0 20px rgba(255, 79, 163, 0.3) inset;
+  overflow: hidden;
+  transition: background 0.5s ease;
 }
 
+/* Glossy flap with shine animation */
 .envelope-flap {
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:#ff4fa3;
-  clip-path:polygon(0 0, 50% 65%, 100% 0);
-  transform-origin:top center;
-  transition:transform 1.3s cubic-bezier(.68,-0.55,.27,1.55);
-  backface-visibility:hidden;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #ff4fa3, #ff85c1);
+  clip-path: polygon(0 0, 50% 65%, 100% 0);
+  transform-origin: top center;
+  transition: transform 1.3s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s ease;
+  backface-visibility: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
+/* Flap pulse glow to indicate interactivity */
+.envelope-flap::after {
+  content: "✨";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  opacity: 0;
+  animation: flapSparkle 2s ease-in-out infinite;
+}
+
+@keyframes flapSparkle {
+  0% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.5); }
+  50% { opacity: 1; transform: translateX(-50%) translateY(-5px) scale(1.2); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(0) scale(0.5); }
+}
+
+/* Open animation */
 .envelope-wrapper.open .envelope-flap {
-  transform:rotateX(-180deg);
+  transform: rotateX(-180deg);
+  box-shadow: 0 25px 60px rgba(255,79,163,0.4);
 }
 
+/* Inner glow when opened */
+.envelope-wrapper.open::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  box-shadow: 0 0 50px rgba(255,182,255,0.5) inset;
+  pointer-events: none;
+}
+
+/* Text above envelope */
 .envelope-text {
-  margin-top:30px;
-  font-weight:600;
-  color:#d63384;
-  font-size:18px;
+  margin-top: 30px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #d63384;
+  text-shadow: 0 0 5px #ff85c1, 0 0 10px #ff4fa3;
+  animation: textPulse 2s ease-in-out infinite;
 }
 
-.hidden { opacity:0; visibility:hidden; transition:opacity 1s ease; }
+@keyframes textPulse {
+  0%, 100% { text-shadow: 0 0 5px #ff85c1, 0 0 10px #ff4fa3; }
+  50% { text-shadow: 0 0 15px #ff85c1, 0 0 25px #ff4fa3; }
+}
 
 /* ------------------ INVITATION CARD ------------------ */
 .invitation {
@@ -223,22 +257,6 @@ body::before {
   .section h3{font-size:20px;}
   .section, .footer{font-size:14px;}
 }
-.envelope-flap::after {
-  content:"✨";
-  position:absolute;
-  top:-10px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:20px;
-  opacity:0;
-  animation:sparkle 0.8s ease forwards;
-}
-
-@keyframes sparkle {
-  0% { opacity:0; transform:translateY(0) scale(0); }
-  50% { opacity:1; transform:translateY(-10px) scale(1.2); }
-  100% { opacity:0; transform:translateY(-20px) scale(0); }
-}  
 .photo-frame-wrapper img {
   width:100%;
   display:block;
@@ -327,11 +345,11 @@ body::before {
       <h3>Celebrations:</h3>
       <p><strong>Christening (9:00 AM) For Godparents:</strong> Mary Help of Christians Church</p>
       <p>📍 Canetown sbd. Victorias City</p>
-      <a class="button" href="https://maps.app.goo.gl/ChQwGQzdS1VNgJGZ8" target="_blank">Navigate to Church</a>
+      <a class="button" href="https://maps.app.goo.gl/WHeAjsiRvKp9tD5r8?g_st=ac" target="_blank">Navigate to Church</a>
 
       <p><strong>Birthday Venue (12:00 NN) All Guest:</strong> CHA Hall</p>
       <p>📍 Canetown sbd. Victorias City</p>
-      <a class="button" href="https://maps.app.goo.gl/TJ8RfoRkrm9E7bpM9" target="_blank">Navigate to Birthday Venue</a>
+      <a class="button" href="https://maps.app.goo.gl/DKuJS5SSBX6JVU3cA?g_st=ac" target="_blank">Navigate to Birthday Venue</a>
     </div>
 
     <div class="footer">We would love to celebrate this special day with you.</div>
