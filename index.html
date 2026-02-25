@@ -12,16 +12,12 @@
 
 body {
   font-family:'Poppins',sans-serif;
-
-  /* Paper texture background */
   background:
     url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
     linear-gradient(135deg,#fde6ff,#e0f7ff,#fff0f8);
-
   background-blend-mode: overlay;
   background-size: auto, 400% 400%;
   animation:bgMove 15s ease infinite;
-
   display:flex;
   justify-content:center;
   align-items:center;
@@ -31,11 +27,7 @@ body {
   position:relative;
 }
 
-@keyframes bgMove {
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
+@keyframes bgMove {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 
 /* Subtle floating glow */
 body::before {
@@ -50,25 +42,21 @@ body::before {
   z-index:0;
 }
 
-/* Reduced motion support */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * { animation:none !important; }
 }
 
 /* ============================= */
-/* 3D ENVELOPE */
+/* 3D Envelope */
 /* ============================= */
-
 .envelope-screen {
   position:fixed;
   inset:0;
-
   background:
     url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
     linear-gradient(135deg,#fde6ff,#e0f7ff,#fff0f8);
-
   background-blend-mode: overlay;
-
   display:flex;
   justify-content:center;
   align-items:center;
@@ -108,9 +96,7 @@ body::before {
   backface-visibility:hidden;
 }
 
-.envelope-wrapper.open .envelope-flap {
-  transform:rotateX(-180deg);
-}
+.envelope-wrapper.open .envelope-flap { transform:rotateX(-180deg); }
 
 .envelope-text {
   margin-top:30px;
@@ -119,25 +105,17 @@ body::before {
   font-size:18px;
 }
 
-.hidden {
-  opacity:0;
-  visibility:hidden;
-  transition:opacity 1s ease;
-}
+.hidden { opacity:0; visibility:hidden; transition:opacity 1s ease; }
 
 /* ============================= */
-/* INVITATION CARD */
+/* Invitation Card */
 /* ============================= */
-
 .invitation {
   width:100%;
   max-width:600px;
-
-  /* Paper card texture */
   background:
     url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
     rgba(255,255,255,0.92);
-
   backdrop-filter: blur(6px);
   border:1px solid rgba(255,255,255,0.5);
   border-radius:25px;
@@ -150,10 +128,7 @@ body::before {
   animation:cardReveal 1.2s ease forwards;
 }
 
-@keyframes cardReveal {
-  from { opacity:0; transform:translateY(30px); }
-  to { opacity:1; transform:translateY(0); }
-}
+@keyframes cardReveal { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
 
 .invitation::before {
   content:"";
@@ -167,36 +142,12 @@ body::before {
 }
 
 /* Typography */
-
-.title {
-  font-family:'Pacifico',cursive;
-  font-size:40px;
-  color:#ff4fa3;
-  margin-bottom:10px;
-}
-
-.subtitle {
-  font-size:18px;
-  margin-bottom:15px;
-  font-style:italic;
-  opacity:0.8;
-}
-
-.name {
-  font-family:'Playfair Display',serif;
-  font-size:32px;
-  font-weight:700;
-  color:#d63384;
-  margin:15px 0;
-}
-
-.date {
-  font-size:18px;
-  margin-bottom:25px;
-}
+.title { font-family:'Pacifico',cursive; font-size:40px; color:#ff4fa3; margin-bottom:10px; }
+.subtitle { font-size:18px; margin-bottom:15px; font-style:italic; opacity:0.8; }
+.name { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#d63384; margin:15px 0; }
+.date { font-size:18px; margin-bottom:25px; }
 
 /* Image */
-
 .photo-frame-wrapper {
   position:relative;
   margin:25px auto;
@@ -211,57 +162,24 @@ body::before {
   display:block;
   border-radius:20px;
   transition:0.5s ease;
+  height:auto;
+  max-height:500px;
 }
 
-.photo-frame-wrapper img:hover {
-  transform:scale(1.05);
-}
+.photo-frame-wrapper img:hover { transform:scale(1.05); }
 
 /* Section */
-
-.section {
-  margin-top:25px;
-  font-size:16px;
-  text-align:left;
-}
-
-.section h3 {
-  font-size:24px;
-  margin-bottom:15px;
-  color:#ff4fa3;
-}
+.section { margin-top:25px; font-size:16px; text-align:left; }
+.section h3 { font-size:24px; margin-bottom:15px; color:#ff4fa3; }
 
 /* Buttons */
+.button { display:block; width:100%; text-align:center; margin:10px 0; padding:12px; background:linear-gradient(45deg,#ff4fa3,#ff85c1); color:white; border-radius:25px; text-decoration:none; font-weight:600; transition:0.3s; box-shadow:0 8px 20px rgba(255,79,163,0.4); }
+.button:hover { transform:translateY(-2px); box-shadow:0 12px 25px rgba(255,79,163,0.6); }
 
-.button {
-  display:block;
-  width:100%;
-  text-align:center;
-  margin:10px 0;
-  padding:12px;
-  background:linear-gradient(45deg,#ff4fa3,#ff85c1);
-  color:white;
-  border-radius:25px;
-  text-decoration:none;
-  font-weight:600;
-  transition:0.3s;
-  box-shadow:0 8px 20px rgba(255,79,163,0.4);
-}
-
-.button:hover {
-  transform:translateY(-2px);
-  box-shadow:0 12px 25px rgba(255,79,163,0.6);
-}
-
-.footer {
-  margin-top:25px;
-  font-size:16px;
-  font-style:italic;
-  text-align:center;
-}
+/* Footer */
+.footer { margin-top:25px; font-size:16px; font-style:italic; text-align:center; }
 
 /* Music Button */
-
 #musicToggle {
   position:fixed;
   bottom:20px;
@@ -278,6 +196,100 @@ body::before {
   z-index:5;
   display:none;
 }
+
+/* ============================= */
+/* Confetti + Sparkles + Balloons + Angels + Unicorns */
+.sparkle { position:absolute; width:5px; height:5px; background:white; border-radius:50%; animation:float 10s linear infinite; z-index:1; will-change:transform; }
+@keyframes float { from{transform:translateY(100vh) scale(0);} to{transform:translateY(-10vh) scale(1);} }
+
+.balloon { position:absolute; width:35px; height:50px; background: radial-gradient(circle at 50% 30%, #ff5ea1, #ff85c1); border-radius:50% 50% 50% 50% / 60% 60% 40% 40%; animation:rise linear infinite; z-index:1; will-change:transform; }
+@keyframes rise {0%{transform:translateY(100vh) scale(0.5);}100%{transform:translateY(-20vh) scale(1);} }
+
+.angel { position:absolute; font-size:50px; opacity:0.3; animation:angelMove linear infinite alternate; z-index:1; will-change:transform; }
+@keyframes angelMove {0%{transform:translateY(100vh) translateX(0) rotate(0deg);}100%{transform:translateY(-10vh) translateX(50px) rotate(360deg);} }
+
+.unicorn { position:absolute; font-size:50px; color:#ff85c1; text-shadow: 0 0 5px #ff4fa3, 0 0 10px #ff85c1, 0 0 15px #ff4fa3, 0 0 20px #ff85c1; animation: unicornGlow 3s ease-in-out infinite alternate, unicornFloat 6s ease-in-out infinite; opacity:0.9; z-index:3; }
+@keyframes unicornGlow {0%{text-shadow:0 0 5px #ff4fa3,0 0 10px #ff85c1,0 0 15px #ff4fa3,0 0 20px #ff85c1;}50%{text-shadow:0 0 10px #ff4fa3,0 0 20px #ff85c1,0 0 25px #ff4fa3,0 0 30px #ff85c1;}100%{text-shadow:0 0 5px #ff4fa3,0 0 10px #ff85c1,0 0 15px #ff4fa3,0 0 20px #ff85c1;} }
+@keyframes unicornFloat {0%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-10px) rotate(3deg);}100%{transform:translateY(0) rotate(-3deg);} }
+
+/* Media Queries */
+@media (max-width:420px){
+  .title{font-size:30px;}
+  .name{font-size:24px;}
+  .date{font-size:16px;}
+  .section h3{font-size:20px;}
+  .section, .footer{font-size:14px;}
+}
+.envelope-flap::after {
+  content:"✨";
+  position:absolute;
+  top:-10px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:20px;
+  opacity:0;
+  animation:sparkle 0.8s ease forwards;
+}
+
+@keyframes sparkle {
+  0% { opacity:0; transform:translateY(0) scale(0); }
+  50% { opacity:1; transform:translateY(-10px) scale(1.2); }
+  100% { opacity:0; transform:translateY(-20px) scale(0); }
+}
+.title {
+  font-family:'Pacifico',cursive;
+  font-size:40px;
+  color:#ff4fa3;
+  margin-bottom:10px;
+  animation:titleBounce 1.5s ease forwards;
+}
+
+@keyframes titleBounce {
+  0% { transform: scale(0); opacity:0; }
+  50% { transform: scale(1.2); opacity:1; }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+.invitation {
+  background:
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
+    rgba(255,255,255,0.92);
+  backdrop-filter: blur(6px);
+  border:1px solid rgba(255,255,255,0.5);
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.15);
+  text-align:center;
+  position:relative;
+  z-index:2;
+  display:none;
+  animation:cardReveal 1.2s ease forwards, cardGlow 8s ease infinite alternate;
+}
+
+@keyframes cardGlow {
+  0% { background: linear-gradient(135deg, #fde6ff, #e0f7ff, #fff0f8); }
+  50% { background: linear-gradient(135deg, #ffe6f7, #e0fff7, #fff0ff); }
+  100% { background: linear-gradient(135deg, #fde6ff, #e0f7ff, #fff0f8); }
+}
+.photo-frame-wrapper img {
+  width:100%;
+  display:block;
+  border-radius:20px;
+  transition:0.5s ease;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 15px 40px rgba(255,79,163,0.25);
+  }
+  50% {
+    box-shadow: 0 25px 60px rgba(255,79,163,0.45);
+  }
+  100% {
+    box-shadow: 0 15px 40px rgba(255,79,163,0.25);
+  }
+}
 </style>
 </head>
 
@@ -285,7 +297,7 @@ body::before {
 
 <!-- 3D Envelope -->
 <div class="envelope-screen" id="envelopeScreen">
-  <div class="envelope-wrapper" id="envelope">
+  <div class="envelope-wrapper" id="envelope" aria-label="Digital envelope, tap to open">
     <div class="envelope-body"></div>
     <div class="envelope-flap"></div>
   </div>
@@ -299,9 +311,9 @@ body::before {
   <div class="name">Natania Jasly</div>
   <div class="date">March 31, 2026 at <strong>9:00 AM</strong></div>
 
-<div class="photo-frame-wrapper">
+  <div class="photo-frame-wrapper">
     <img 
-      src="https://raw.githubusercontent.com/nero31994/resourcenxb/main/file_0000000066f871fabbffe86ec7b5fa65-optimized.webp" 
+      src="https://raw.githubusercontent.com/nero31994/mochi/refs/heads/main/file_00000000d0b4720ba51fef39d0a8b7ce.webp" 
       alt="Natania Jasly"
       width="900"
       height="690"
@@ -312,7 +324,7 @@ body::before {
 
   <div class="section">
     <h3>Celebrations:</h3>
-    <p><strong>Christening (9:00 AM):</strong> Mary Help of Christians Church</p>
+    <p><strong>Christening (9:00 AM) For GodParents:</strong> Mary Help of Christians Church</p>
     <p>📍 Canetown sbd. Victorias City</p>
     <a class="button" href="https://maps.app.goo.gl/ChQwGQzdS1VNgJGZ8" target="_blank">Navigate to Church</a>
 
@@ -326,12 +338,14 @@ body::before {
   </div>
 </div>
 
+<!-- Music -->
 <button id="musicToggle">🎵</button>
 <audio id="bgMusic" loop preload="metadata">
   <source src="https://github.com/nero31994/mochi/raw/refs/heads/main/6-Happy-Commercial-Piano(chosic.com)%20(1).mp3" type="audio/mpeg">
 </audio>
 
 <script>
+// Envelope + Music + Animations
 document.addEventListener("DOMContentLoaded", () => {
 
   const envelope = document.getElementById("envelope");
@@ -340,8 +354,50 @@ document.addEventListener("DOMContentLoaded", () => {
   const music = document.getElementById("bgMusic");
   const musicBtn = document.getElementById("musicToggle");
 
-  envelope.addEventListener("click", () => {
+  // Create sparkles
+  for(let i=0;i<20;i++){
+    let s=document.createElement("div");
+    s.className="sparkle";
+    s.style.left=Math.random()*100+"vw";
+    s.style.animationDuration=(5+Math.random()*10)+"s";
+    s.style.opacity=Math.random();
+    document.body.appendChild(s);
+  }
 
+  // Create balloons
+  for(let i=0;i<12;i++){
+    let b=document.createElement("div");
+    b.className="balloon";
+    b.style.left=Math.random()*100+"vw";
+    b.style.animationDuration=(6+Math.random()*10)+"s";
+    b.style.animationDelay=(Math.random()*5)+"s";
+    document.body.appendChild(b);
+  }
+
+  // Create angels
+  const angels=["😇","👼"];
+  for(let i=0;i<8;i++){
+    let a=document.createElement("div");
+    a.className="angel";
+    a.innerHTML=angels[Math.floor(Math.random()*angels.length)];
+    a.style.left=Math.random()*100+"vw";
+    a.style.animationDuration=(10+Math.random()*10)+"s";
+    a.style.animationDelay=(Math.random()*5)+"s";
+    document.body.appendChild(a);
+  }
+
+  // Create unicorns
+  for(let i=0;i<4;i++){
+    let u=document.createElement("div");
+    u.className="unicorn u"+(i+1);
+    u.style.top=(i<2? "10px":"auto");
+    u.style.bottom=(i>=2? "10px":"auto");
+    u.style.left=(i%2===0? "10px":"auto");
+    u.style.right=(i%2===1? "10px":"auto");
+    document.body.appendChild(u);
+  }
+
+  envelope.addEventListener("click", () => {
     envelope.classList.add("open");
 
     setTimeout(() => {
@@ -350,19 +406,54 @@ document.addEventListener("DOMContentLoaded", () => {
       musicBtn.style.display = "block";
       music.play();
       musicBtn.innerHTML="🔊";
-    }, 1300);
 
+      // Confetti
+      launchConfetti();
+    }, 1300);
   });
 
   musicBtn.onclick = () => {
-    if(music.paused){
-      music.play();
-      musicBtn.innerHTML="🔊";
-    } else {
-      music.pause();
-      musicBtn.innerHTML="🎵";
-    }
+    if(music.paused){ music.play(); musicBtn.innerHTML="🔊"; } 
+    else { music.pause(); musicBtn.innerHTML="🎵"; }
   };
+
+  // Confetti canvas
+  const canvas=document.createElement("canvas");
+  canvas.id="confetti";
+  canvas.style.position="fixed";
+  canvas.style.pointerEvents="none";
+  canvas.style.top="0"; canvas.style.left="0";
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+  document.body.appendChild(canvas);
+  const ctx=canvas.getContext("2d");
+
+  let confetti=[];
+  function launchConfetti(){
+    for(let i=0;i<150;i++){
+      confetti.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*6, d:Math.random()*100});
+    }
+    animateConfetti();
+  }
+
+  function animateConfetti(){
+    let frame=0;
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle="rgba(255,79,163,0.8)";
+      confetti.forEach(c=>{
+        ctx.beginPath();
+        ctx.arc(c.x,c.y,c.r,0,Math.PI*2);
+        ctx.fill();
+        c.y+=2;
+      });
+      frame++;
+      if(frame<150){ requestAnimationFrame(draw); } else { ctx.clearRect(0,0,canvas.width,canvas.height); }
+    }
+    draw();
+  }
+
+  window.addEventListener('resize',()=>{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; });
 
 });
 </script>
