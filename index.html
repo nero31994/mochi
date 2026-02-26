@@ -401,74 +401,26 @@ body::before {
 
 
   
-  /* ------------------ FLIP COUNTDOWN ------------------ */
-.flip-countdown {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 20px 0 30px;
-  flex-wrap: wrap;
+.countdown {
+  font-size: 22px;
+  margin: 15px 0 25px 0;
+  font-weight: 700;
+  color: #ff4fa3;
+  text-shadow: 0 0 12px rgba(255,255,255,0.8);
+  animation: pulseCountdown 2s infinite, rainbowShift 8s ease-in-out infinite;
+  border-radius: 15px;
+  padding: 10px 20px;
+  backdrop-filter: blur(4px);
 }
 
-.flip-unit {
-  text-align: center;
-  font-size: 12px;
-  color: #d63384;
-  font-weight: 600;
-}
+.hidden { opacity:0; visibility:hidden; transition:opacity 1s ease, visibility 1s ease; }
 
-.flip-card {
-  position: relative;
-  width: 70px;
-  height: 80px;
-  perspective: 600px;
+@keyframes pulseCountdown {
+  0% { text-shadow: 0 0 10px #ff4fa3, 0 0 20px #ff85c1, 0 0 30px #ffd6f6; }
+  50% { text-shadow: 0 0 20px #ff4fa3, 0 0 40px #ff85c1, 0 0 60px #ffd6f6; }
+  100% { text-shadow: 0 0 10px #ff4fa3, 0 0 20px #ff85c1, 0 0 30px #ffd6f6; }
 }
-
-.flip-card .top,
-.flip-card .bottom {
-  position: absolute;
-  width: 100%;
-  height: 50%;
-  background: linear-gradient(135deg,#ff4fa3,#ff85c1);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  font-weight: bold;
-  border-radius: 8px;
-  backface-visibility: hidden;
-  box-shadow: 0 5px 15px rgba(255,79,163,0.4);
-}
-
-.flip-card .top {
-  top: 0;
-  transform-origin: bottom;
-  border-bottom: 1px solid rgba(255,255,255,0.4);
-}
-
-.flip-card .bottom {
-  bottom: 0;
-  transform-origin: top;
-}
-
-.flip-card.flip .top {
-  animation: flipTop 0.6s forwards;
-}
-
-.flip-card.flip .bottom {
-  animation: flipBottom 0.6s forwards;
-}
-
-@keyframes flipTop {
-  0% { transform: rotateX(0deg); }
-  100% { transform: rotateX(-90deg); }
-}
-
-@keyframes flipBottom {
-  0% { transform: rotateX(90deg); }
-  100% { transform: rotateX(0deg); }
-}
+  
 </style>
 </head>
 <body>
@@ -490,39 +442,7 @@ body::before {
     <p class="subtitle">Please join us as we celebrate the christening and birthday of our child</p>
     <div class="name">Natania Jasly</div>
     <div class="date">March 31, 2026 </div>
-<div class="flip-countdown hidden" id="countdownTimer">
-  <div class="flip-unit">
-    <div class="flip-card" id="days">
-      <div class="top">00</div>
-      <div class="bottom">00</div>
-    </div>
-    <span>Days</span>
-  </div>
-
-  <div class="flip-unit">
-    <div class="flip-card" id="hours">
-      <div class="top">00</div>
-      <div class="bottom">00</div>
-    </div>
-    <span>Hours</span>
-  </div>
-
-  <div class="flip-unit">
-    <div class="flip-card" id="minutes">
-      <div class="top">00</div>
-      <div class="bottom">00</div>
-    </div>
-    <span>Minutes</span>
-  </div>
-
-  <div class="flip-unit">
-    <div class="flip-card" id="seconds">
-      <div class="top">00</div>
-      <div class="bottom">00</div>
-    </div>
-    <span>Seconds</span>
-  </div>
-</div>
+<div class="countdown unicorn-glow hidden" id="countdownTimer"></div>
     <div class="photo-frame-wrapper unicorn-glow">
       <img 
         src="https://raw.githubusercontent.com/nero31994/mochi/refs/heads/main/file_00000000d0b4720ba51fef39d0a8b7ce.webp" 
@@ -608,48 +528,29 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Countdown Timer
-  // Flip Countdown Timer
-const eventDate = new Date("March 31, 2026 09:00:00").getTime();
+  const eventDate = new Date("March 31, 2026 09:00:00").getTime();
 
-function updateFlip(id, value){
-  const card = document.getElementById(id);
-  const top = card.querySelector(".top");
-  const bottom = card.querySelector(".bottom");
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = eventDate - now;
 
-  if(top.innerText !== value){
-    card.classList.add("flip");
+    if(distance < 0){
+      countdownEl.innerHTML = "🎉 The event has started!";
+      clearInterval(timerInterval);
+      return;
+    }
 
-    setTimeout(() => {
-      top.innerText = value;
-      bottom.innerText = value;
-      card.classList.remove("flip");
-    }, 300);
-  }
-}
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-function updateCountdown(){
-  const now = new Date().getTime();
-  const distance = eventDate - now;
-
-  if(distance < 0){
-    document.getElementById("countdownTimer").innerHTML = "🎉 The event has started!";
-    clearInterval(timerInterval);
-    return;
+    countdownEl.innerHTML = `⏰ ${days}d ${hours}h ${minutes}m ${seconds}s`;
   }
 
-  const days = String(Math.floor(distance / (1000*60*60*24))).padStart(2,'0');
-  const hours = String(Math.floor((distance % (1000*60*60*24)) / (1000*60*60))).padStart(2,'0');
-  const minutes = String(Math.floor((distance % (1000*60*60)) / (1000*60))).padStart(2,'0');
-  const seconds = String(Math.floor((distance % (1000*60)) / 1000)).padStart(2,'0');
-
-  updateFlip("days", days);
-  updateFlip("hours", hours);
-  updateFlip("minutes", minutes);
-  updateFlip("seconds", seconds);
-}
-
-updateCountdown();
-const timerInterval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+  const timerInterval = setInterval(updateCountdown, 1000);
+});  
 </script>
 </body>
 </html>
